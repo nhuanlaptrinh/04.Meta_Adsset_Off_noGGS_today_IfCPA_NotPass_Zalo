@@ -10,10 +10,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        208,
-        -1600
+        528,
+        -96
       ],
-      "id": "e2c50258-4ff3-4113-8a32-b457002d5302",
+      "id": "83274d1e-52be-45e3-914b-9bfedafb19f6",
       "name": "Sticky Note"
     },
     {
@@ -24,10 +24,10 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2368,
-        -1568
+        2688,
+        -64
       ],
-      "id": "2f0b7e43-1f0c-47bd-8e82-75fb98af1dad",
+      "id": "7e9c125f-1f62-41e8-b45b-9fd892498237",
       "name": "Aggregate"
     },
     {
@@ -35,16 +35,16 @@
         "promptType": "define",
         "text": "={{ $('Aggregate').item.json.data }}",
         "options": {
-          "systemMessage": "=Bạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau:\n{{ $('Aggregate').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)\nBạn chỉ đưa thông tin về chi tiêu từng nhóm và tính trạng đang hoạt động (ACTIVE) hay đang tắt (PAUSED) \nđơn vị tiền tệ là VNĐ"
+          "systemMessage": "=Bạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau:\n{{ $('Aggregate').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)\nThêm vào lý do tại sao tắt của từng nhóm\nBạn chỉ đưa thông tin về chi tiêu từng nhóm và tính trạng đang hoạt động (ACTIVE) hay đang tắt (PAUSED) \nđơn vị tiền tệ là VNĐ"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        3024,
-        -1584
+        3344,
+        -80
       ],
-      "id": "59e56894-41b3-4f08-80f7-7c59a0b76572",
+      "id": "0b66c712-1524-48df-8002-7cc19185a5e6",
       "name": "AI Agent"
     },
     {
@@ -59,10 +59,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2864,
-        -1392
+        3184,
+        112
       ],
-      "id": "f6f64807-1a47-4e62-9be5-96192fa13d10",
+      "id": "50a4ec76-f32a-4419-9a59-c796f4a80c2f",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
@@ -93,10 +93,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        3520,
-        -1584
+        3840,
+        -80
       ],
-      "id": "8f39cb51-e1f5-489e-b5b1-cd76d25756f0",
+      "id": "cdbd916a-d382-4257-bcd7-a6913784dd2d",
       "name": "HTTP Request1"
     },
     {
@@ -135,10 +135,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2352,
-        -1184
+        2672,
+        320
       ],
-      "id": "593f7b04-7000-41b2-a6e5-00fb5fa95c23",
+      "id": "40e835a9-e099-4f67-945c-803ad42a0f1e",
       "name": "Lọc nhóm trong ngưỡng theo chi tiêu"
     },
     {
@@ -154,10 +154,10 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        336,
-        -992
+        656,
+        512
       ],
-      "id": "757aa98b-54fa-49b4-9503-c63a75296321",
+      "id": "2507a11e-fd26-40f3-9785-3f5af2f61e4a",
       "name": "Schedule Trigger1"
     },
     {
@@ -219,10 +219,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        560,
-        -992
+        880,
+        512
       ],
-      "id": "2f926541-df2a-4aff-a37e-c7cc30e76b93",
+      "id": "9f5931e1-9b8a-494c-befb-97b4b4d65b4d",
       "name": "Thông Số Đầu Vào1"
     },
     {
@@ -254,10 +254,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        784,
-        -992
+        1104,
+        512
       ],
-      "id": "0d054e09-bea7-4ea7-b8b0-074cc29abe56",
+      "id": "0137471f-11dd-4bcf-8a91-5a332f5a6acd",
       "name": "Quy Đổi Theo Tỷ Suất1"
     },
     {
@@ -282,13 +282,13 @@
         },
         "options": {}
       },
-      "id": "49a47ce7-6db6-4dcf-8125-8fce7a02c8c3",
+      "id": "118d6a40-e3e8-447d-b316-fb684a98dbcb",
       "name": "Lấy dữ liệu Campaigns1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1008,
-        -992
+        1328,
+        512
       ],
       "notesInFlow": true,
       "notes": "Lấy tất cả campaigns"
@@ -301,10 +301,10 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1232,
-        -992
+        1552,
+        512
       ],
-      "id": "8ea04ea0-3a79-43f5-8ccf-e5678e98c2b7",
+      "id": "d8ee9b39-84b1-49f6-94f4-ba5a8fe4586b",
       "name": "Split Out Campaigns1"
     },
     {
@@ -334,10 +334,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1456,
-        -992
+        1776,
+        512
       ],
-      "id": "9a87f59c-375e-46a4-95a7-74caa23ea8fc",
+      "id": "f42c0af2-54a1-4a70-9f26-c5c9e3e347e9",
       "name": "Lọc Campaigns Active1"
     },
     {
@@ -366,13 +366,13 @@
         },
         "options": {}
       },
-      "id": "4a82f0eb-bf13-47e0-9ace-81cfcc236c82",
+      "id": "1490ba68-cfd9-4c21-a7cb-58cc1a000143",
       "name": "Lấy dữ liệu Nhóm1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1680,
-        -992
+        2000,
+        512
       ],
       "notesInFlow": true,
       "notes": "Lấy adsets từ campaigns active"
@@ -385,10 +385,10 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1904,
-        -992
+        2224,
+        512
       ],
-      "id": "7189c1cb-7b7e-47b0-98b5-cdd565217564",
+      "id": "45b59ff8-8c29-44a4-808e-1558cf66bb60",
       "name": "Split Out Adsets1"
     },
     {
@@ -418,10 +418,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2640,
-        -1184
+        2960,
+        320
       ],
-      "id": "acc2219c-72b5-4825-a557-62d74e51f779",
+      "id": "da4b5c96-a8a3-4701-a674-061e79371320",
       "name": "Lọc Adsets ACTIVE1"
     },
     {
@@ -431,10 +431,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2928,
-        -1184
+        3248,
+        320
       ],
-      "id": "cc9f1b47-8405-4972-8af9-2890831dc8d4",
+      "id": "a2ee5713-b760-44b5-9ef1-4621f75d3f83",
       "name": "Tính CPA1"
     },
     {
@@ -464,10 +464,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3152,
-        -1184
+        3472,
+        320
       ],
-      "id": "c9af0267-9e3a-4636-9033-db7b398b99ec",
+      "id": "262347d1-0282-40fb-bbb5-449151545930",
       "name": "Kiểm tra CPA > Ngưỡng1"
     },
     {
@@ -523,10 +523,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3376,
-        -1184
+        3696,
+        320
       ],
-      "id": "0d0c05cb-9aa2-4172-b6b3-2eab5a67660a",
+      "id": "a2dee32e-074a-44a3-b352-aedd4a1982be",
       "name": "Chuẩn bị dữ liệu1"
     },
     {
@@ -548,13 +548,13 @@
         },
         "options": {}
       },
-      "id": "00417850-5830-4cb1-8fd8-4834df07b6e8",
+      "id": "7f91c081-dcf4-4a1e-850a-1d409f8f9a97",
       "name": "Tắt nhom1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3600,
-        -1184
+        3920,
+        320
       ]
     },
     {
@@ -564,10 +564,10 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2128,
-        -992
+        2448,
+        512
       ],
-      "id": "79903014-ac97-420e-ba9c-321fdd81e98e",
+      "id": "f14e83ef-432b-4b05-b10e-b72e2a1acf8f",
       "name": "Loop Over Items1"
     },
     {
@@ -617,10 +617,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3824,
-        -1120
+        4144,
+        384
       ],
-      "id": "a239d5e4-ff40-4d58-a6e7-8281c39cbc74",
+      "id": "2cb4e71d-14e7-4ba7-a3e8-95e9df4ad330",
       "name": "Trả Về Kết Quả"
     },
     {
@@ -651,10 +651,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2576,
-        -1568
+        2896,
+        -64
       ],
-      "id": "71171e63-4d33-4496-a114-0ea04d4e6d70",
+      "id": "7f9c5a39-a0d2-40b3-a588-5f186dc5249e",
       "name": "If"
     }
   ],
@@ -914,11 +914,10 @@
     "executionOrder": "v1",
     "availableInMCP": false
   },
-  "versionId": "a41d10d7-86d7-4f9c-b710-87fd446f8931",
+  "versionId": "03c94fc3-e189-49a0-bd68-b200970df4e2",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "9afe67c5c4700f465bf756215b5e5e959b7e37136df48464de5e08eb43e7b2cb"
   },
-  "id": "EaXcEczMQSGVc0IK",
+  "id": "l1R3YCWezB0gDaDo",
   "tags": []
 }
