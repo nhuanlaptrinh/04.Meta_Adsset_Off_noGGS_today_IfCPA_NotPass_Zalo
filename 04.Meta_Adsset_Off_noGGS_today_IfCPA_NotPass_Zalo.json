@@ -4,14 +4,14 @@
     {
       "parameters": {
         "content": "TKN07_VN Tắt Quảng Cáo Nếu Không Đạt",
-        "height": 1200,
+        "height": 800,
         "width": 3920
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        200,
-        -1808
+        208,
+        -1600
       ],
       "id": "e2c50258-4ff3-4113-8a32-b457002d5302",
       "name": "Sticky Note"
@@ -24,8 +24,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2352,
-        -1488
+        2368,
+        -1568
       ],
       "id": "2f0b7e43-1f0c-47bd-8e82-75fb98af1dad",
       "name": "Aggregate"
@@ -35,13 +35,13 @@
         "promptType": "define",
         "text": "={{ $('Aggregate').item.json.data }}",
         "options": {
-          "systemMessage": "=Bạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau\n{{ $('Aggregate').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)"
+          "systemMessage": "=Bạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau:\n{{ $('Aggregate').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)\nBạn chỉ đưa thông tin về chi tiêu từng nhóm và tính trạng đang hoạt động (ACTIVE) hay đang tắt (PAUSED) \nđơn vị tiền tệ là VNĐ"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        2576,
+        3024,
         -1584
       ],
       "id": "59e56894-41b3-4f08-80f7-7c59a0b76572",
@@ -59,8 +59,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2656,
-        -1360
+        2864,
+        -1392
       ],
       "id": "f6f64807-1a47-4e62-9be5-96192fa13d10",
       "name": "OpenAI Chat Model",
@@ -93,8 +93,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        2928,
-        -1488
+        3520,
+        -1584
       ],
       "id": "8f39cb51-e1f5-489e-b5b1-cd76d25756f0",
       "name": "HTTP Request1"
@@ -603,6 +603,12 @@
               "name": "reason",
               "value": "={{\n  Number($('Chuẩn bị dữ liệu1').item.json.cpa) === 999999\n    ? 'Không xuất hiện kết quả'\n    : 'AdSet không đạt ngưỡng CPA (CPA = '\n        + $('Chuẩn bị dữ liệu1').item.json.cpa\n        + ' > '\n        + $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_CPA\n        + ')'\n}}\n",
               "type": "string"
+            },
+            {
+              "id": "1233ada8-cb9c-437d-ab39-78ef21ee049b",
+              "name": "spend",
+              "value": "={{ $('Loop Over Items1').item.json.insights.data[0].spend }}",
+              "type": "number"
             }
           ]
         },
@@ -616,6 +622,40 @@
       ],
       "id": "a239d5e4-ff40-4d58-a6e7-8281c39cbc74",
       "name": "Trả Về Kết Quả"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c0efa32a-9833-43be-930b-c79208cfd3dc",
+              "leftValue": "={{ $json.data.some(item => item.reason) }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2576,
+        -1568
+      ],
+      "id": "71171e63-4d33-4496-a114-0ea04d4e6d70",
+      "name": "If"
     }
   ],
   "pinData": {},
@@ -624,7 +664,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -856,6 +896,17 @@
           }
         ]
       ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -863,7 +914,7 @@
     "executionOrder": "v1",
     "availableInMCP": false
   },
-  "versionId": "a4201368-514a-49c4-a262-4b0028738dae",
+  "versionId": "a41d10d7-86d7-4f9c-b710-87fd446f8931",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "9afe67c5c4700f465bf756215b5e5e959b7e37136df48464de5e08eb43e7b2cb"
