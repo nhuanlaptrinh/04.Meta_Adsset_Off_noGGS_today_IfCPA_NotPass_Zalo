@@ -4,17 +4,17 @@
     {
       "parameters": {
         "content": "TKN07_VN Tắt Quảng Cáo Nếu Không Đạt",
-        "height": 800,
-        "width": 3920
+        "height": 976,
+        "width": 5120
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        528,
-        -96
+        -1232,
+        3840
       ],
-      "id": "83274d1e-52be-45e3-914b-9bfedafb19f6",
-      "name": "Sticky Note"
+      "id": "6f07fcfc-4992-42db-a576-2e4a0f487733",
+      "name": "Sticky Note3"
     },
     {
       "parameters": {
@@ -24,28 +24,28 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2688,
-        -64
+        1344,
+        3872
       ],
-      "id": "7e9c125f-1f62-41e8-b45b-9fd892498237",
-      "name": "Aggregate"
+      "id": "42e086b0-2f92-4b96-89e7-0e0e7ee740eb",
+      "name": "Aggregate1"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $('Aggregate').item.json.data }}",
+        "text": "={{ $('Aggregate1').item.json.data }}",
         "options": {
-          "systemMessage": "=Bạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau:\n{{ $('Aggregate').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)\nThêm vào lý do tại sao tắt của từng nhóm\nBạn chỉ đưa thông tin về chi tiêu từng nhóm và tính trạng đang hoạt động (ACTIVE) hay đang tắt (PAUSED) \nđơn vị tiền tệ là VNĐ"
+          "systemMessage": "=Quy tắc bắt buộc: trả về không được lớn hơn 1500 ký tự (ngắn gọn thôi)\nBạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau:\n{{ $('Aggregate1').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)\nThêm vào lý do tại sao tắt của từng nhóm\nBạn chỉ đưa thông tin về chi tiêu từng nhóm và tính trạng đang hoạt động (ACTIVE) hay đang tắt (PAUSED) \nđơn vị tiền tệ là VNĐ\nQuy tắc bắt buộc: trả về không được quá 1500 ký tự (ngắn gọn thôi)"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        3344,
-        -80
+        2448,
+        3856
       ],
-      "id": "0b66c712-1524-48df-8002-7cc19185a5e6",
-      "name": "AI Agent"
+      "id": "6c90089a-4d45-4f02-ac26-549fdcea246f",
+      "name": "AI Agent1"
     },
     {
       "parameters": {
@@ -59,22 +59,22 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        3184,
-        112
+        2256,
+        4048
       ],
-      "id": "50a4ec76-f32a-4419-9a59-c796f4a80c2f",
-      "name": "OpenAI Chat Model",
+      "id": "69aef74a-030b-42e8-a066-14ba7be84d89",
+      "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
-          "id": "aPynMBMRDStqq6BB",
-          "name": "n8n free OpenAI API credits"
+          "id": "O00uQUVJ3Z2xrDsL",
+          "name": "OpenAi account 7"
         }
       }
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào1').item.json.api_zalo }}/sendMessage",
+        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào3').item.json.api_zalo }}/sendMessage",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -93,11 +93,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        3840,
-        -80
+        3488,
+        3856
       ],
-      "id": "cdbd916a-d382-4257-bcd7-a6913784dd2d",
-      "name": "HTTP Request1"
+      "id": "b9718d8f-18e5-47d2-87f5-8f9ec44f7a4c",
+      "name": "HTTP Request"
     },
     {
       "parameters": {
@@ -111,20 +111,20 @@
           "conditions": [
             {
               "id": "bcbf93e1-2169-4b60-a2b3-158deb000f7c",
-              "leftValue": "={{ parseFloat($('Split Out Adsets1').item.json.insights.data[0].spend) }}",
-              "rightValue": "={{ $('Quy Đổi Theo Tỷ Suất1').item.json.Nguong_Duoi }}",
+              "leftValue": "={{ parseFloat($('Split Out Adsets3').item.json.insights.data[0].spend) }}",
+              "rightValue": "={{ $('Quy Đổi Theo Tỷ Suất3').item.json.Nguong_Duoi }}",
               "operator": {
                 "type": "number",
-                "operation": "gt"
+                "operation": "gte"
               }
             },
             {
               "id": "b075226f-11f1-4d28-b037-9826597195b5",
-              "leftValue": "={{ parseFloat($('Split Out Adsets1').item.json.insights.data[0].spend) }}",
-              "rightValue": "={{ $('Quy Đổi Theo Tỷ Suất1').item.json.Nguong_Tren }}",
+              "leftValue": "={{ parseFloat($('Split Out Adsets3').item.json.insights.data[0].spend) }}",
+              "rightValue": "={{ $('Quy Đổi Theo Tỷ Suất3').item.json.Nguong_Tren }}",
               "operator": {
                 "type": "number",
-                "operation": "lt"
+                "operation": "lte"
               }
             }
           ],
@@ -135,11 +135,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2672,
-        320
+        912,
+        4256
       ],
-      "id": "40e835a9-e099-4f67-945c-803ad42a0f1e",
-      "name": "Lọc nhóm trong ngưỡng theo chi tiêu"
+      "id": "bf02b402-eb8b-4a70-ad49-ceede7cfa960",
+      "name": "Lọc nhóm trong ngưỡng theo chi tiêu3"
     },
     {
       "parameters": {
@@ -154,11 +154,11 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        656,
-        512
+        -1104,
+        4448
       ],
-      "id": "2507a11e-fd26-40f3-9785-3f5af2f61e4a",
-      "name": "Schedule Trigger1"
+      "id": "8cd1e644-aaf5-4e27-a153-80435d77a5c7",
+      "name": "Schedule Trigger3"
     },
     {
       "parameters": {
@@ -185,7 +185,7 @@
             {
               "id": "fa677240-82bc-4d7f-8920-075213b9bdf2",
               "name": "Cam_Chi_Tieu_Nguong_Duoi",
-              "value": 10000,
+              "value": 19000,
               "type": "number"
             },
             {
@@ -219,11 +219,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        880,
-        512
+        -880,
+        4448
       ],
-      "id": "9f5931e1-9b8a-494c-befb-97b4b4d65b4d",
-      "name": "Thông Số Đầu Vào1"
+      "id": "a0ccb6a3-e4f9-4668-9ad3-cb63c8aa2f46",
+      "name": "Thông Số Đầu Vào3"
     },
     {
       "parameters": {
@@ -254,15 +254,15 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1104,
-        512
+        -656,
+        4448
       ],
-      "id": "0137471f-11dd-4bcf-8a91-5a332f5a6acd",
-      "name": "Quy Đổi Theo Tỷ Suất1"
+      "id": "5be65295-ad74-44d7-8160-06f69d72484a",
+      "name": "Quy Đổi Theo Tỷ Suất3"
     },
     {
       "parameters": {
-        "url": "=https://graph.facebook.com/v24.0/act_{{ $('Thông Số Đầu Vào1').first().json.ID_Ads }}/campaigns",
+        "url": "=https://graph.facebook.com/v24.0/act_{{ $('Thông Số Đầu Vào3').first().json.ID_Ads }}/campaigns",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -276,19 +276,19 @@
             },
             {
               "name": "access_token",
-              "value": "={{ $('Thông Số Đầu Vào1').first().json.access_token }}"
+              "value": "={{ $('Thông Số Đầu Vào3').first().json.access_token }}"
             }
           ]
         },
         "options": {}
       },
-      "id": "118d6a40-e3e8-447d-b316-fb684a98dbcb",
-      "name": "Lấy dữ liệu Campaigns1",
+      "id": "1214d12c-4c8a-42c0-8437-76fd33b0185b",
+      "name": "Lấy dữ liệu Campaigns3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1328,
-        512
+        -432,
+        4448
       ],
       "notesInFlow": true,
       "notes": "Lấy tất cả campaigns"
@@ -301,11 +301,11 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1552,
-        512
+        -208,
+        4448
       ],
-      "id": "d8ee9b39-84b1-49f6-94f4-ba5a8fe4586b",
-      "name": "Split Out Campaigns1"
+      "id": "8be06e95-29e5-4c89-9d21-f8f6be0837fe",
+      "name": "Split Out Campaigns3"
     },
     {
       "parameters": {
@@ -334,11 +334,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1776,
-        512
+        16,
+        4448
       ],
-      "id": "f42c0af2-54a1-4a70-9f26-c5c9e3e347e9",
-      "name": "Lọc Campaigns Active1"
+      "id": "69f90320-db1f-4bf3-9ad0-9bb08eb9386d",
+      "name": "Lọc Campaigns Active3"
     },
     {
       "parameters": {
@@ -356,23 +356,23 @@
             },
             {
               "name": "filtering",
-              "value": "=[{\"field\":\"spend\",\"operator\":\"GREATER_THAN_OR_EQUAL\",\"value\":{{ $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_Duoi }}},{\"field\":\"spend\",\"operator\":\"LESS_THAN_OR_EQUAL\",\"value\":{{ $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_Tren }}}]"
+              "value": "=[{\"field\":\"spend\",\"operator\":\"GREATER_THAN_OR_EQUAL\",\"value\":{{ $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_Duoi }}},{\"field\":\"spend\",\"operator\":\"LESS_THAN_OR_EQUAL\",\"value\":{{ $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_Tren }}}]"
             },
             {
               "name": "access_token",
-              "value": "={{ $('Thông Số Đầu Vào1').first().json.access_token }}"
+              "value": "={{ $('Thông Số Đầu Vào3').first().json.access_token }}"
             }
           ]
         },
         "options": {}
       },
-      "id": "1490ba68-cfd9-4c21-a7cb-58cc1a000143",
-      "name": "Lấy dữ liệu Nhóm1",
+      "id": "ea876efb-449a-4463-ab77-23af03be74f5",
+      "name": "Lấy dữ liệu Nhóm3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2000,
-        512
+        240,
+        4448
       ],
       "notesInFlow": true,
       "notes": "Lấy adsets từ campaigns active"
@@ -385,11 +385,11 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2224,
-        512
+        464,
+        4448
       ],
-      "id": "45b59ff8-8c29-44a4-808e-1558cf66bb60",
-      "name": "Split Out Adsets1"
+      "id": "1e95b85f-06f0-468c-ab1f-bf37358a7c64",
+      "name": "Split Out Adsets3"
     },
     {
       "parameters": {
@@ -418,24 +418,24 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2960,
-        320
+        1600,
+        4240
       ],
-      "id": "da4b5c96-a8a3-4701-a674-061e79371320",
-      "name": "Lọc Adsets ACTIVE1"
+      "id": "a78adab2-c3dd-471d-860c-41bec75a6fce",
+      "name": "Lọc Adsets ACTIVE3"
     },
     {
       "parameters": {
-        "jsCode": "// =======================\n// 1. LẤY THÔNG SỐ ĐẦU VÀO\n// =======================\n\n// Lấy tỷ giá từ node \"Thông Số Đầu Vào\"\n// .first() vì node này chỉ có 1 item cấu hình\n// Ty_Gia dùng để quy đổi USD → VNĐ\nconst tyGia = $('Thông Số Đầu Vào1').first().json.Ty_Gia;\n\n// Lấy ngưỡng CPA cho phép từ node \"Quy Đổi Theo Tỷ Suất\"\n// (chưa dùng trong đoạn này, để phục vụ logic bật/tắt ads phía sau)\nconst nguongCPA = $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_CPA;\n\n\n// ==================================\n// 2. LẤY ITEM HIỆN TẠI ĐANG ĐƯỢC LOOP\n// ==================================\n\n// Trong Code node, n8n tự loop từng item\n// items[0] chính là item hiện tại\nconst item = items[0];\n\n// Kiểm tra an toàn: nếu không có item hoặc json → bỏ qua\nif (!item || !item.json) {\n  return [];\n}\n\n\n// =======================\n// 3. LẤY DỮ LIỆU INSIGHTS\n// =======================\n\n// Facebook Ads insights thường có dạng:\n// insights: { data: [ { ... } ] }\n// ?. dùng để tránh lỗi nếu thiếu key\n// [0] lấy bản ghi đầu tiên\nconst insights = item.json.insights?.data?.[0] || null;\n\n// Nếu ad chưa có dữ liệu insights → bỏ qua\nif (!insights) {\n  return [];\n}\n\n\n// =========================================\n// 4. TÍNH TỔNG HÀNH ĐỘNG (COMMENT + INBOX)\n// =========================================\n\n// insights.actions chứa tất cả hành động của ads\n// Nếu không có → dùng mảng rỗng\nconst actions = insights.actions || [];\n\n// Biến cộng dồn tổng hành động\nlet totalActions = 0;\n\n// Duyệt từng action trong insights\nfor (const action of actions) {\n\n  // Chỉ lấy 2 loại hành động quan trọng:\n  // - comment\n  // - inbox (messaging)\n  if (\n    action.action_type === 'comment' ||\n    action.action_type === 'onsite_conversion.total_messaging_connection'\n  ) {\n    // action.value là string → parseInt sang số\n    // Nếu null → cộng 0\n    totalActions += parseInt(action.value || 0);\n  }\n}\n\n\n// =================\n// 5. TÍNH CPA\n// =================\n\n// Lấy chi phí quảng cáo (USD)\n// parseFloat để đảm bảo là số\nconst spend = parseFloat(insights.spend || 0);\n\n// Tính CPA:\n// - Nếu có hành động → CPA = (chi phí VNĐ / số hành động)\n// - Nếu có spend nhưng không có hành động → gán CPA rất lớn để auto tắt ads\n// - Nếu không spend → CPA = 0\nconst cpa =\n  totalActions > 0\n    ? (spend * tyGia) / totalActions\n    : (spend > 0 ? 999999 : 0);\n\n\n// =======================\n// 6. LẤY POST ID / AD ID\n// =======================\n\n// Lấy danh sách ads từ item\nconst ads = item.json.ads?.data || [];\n\n// Giá trị mặc định nếu không tìm thấy post id\nlet postId = 'No Post ID Found';\n\n// Nếu có ads\nif (ads.length > 0) {\n\n  // Lấy creative của ad đầu tiên\n  const creative = ads[0].creative || {};\n\n  // Ưu tiên lấy post id theo thứ tự:\n  // 1. effective_object_story_id (chuẩn nhất)\n  // 2. object_story_id\n  // 3. fallback = ad id\n  postId =\n    creative.effective_object_story_id ||\n    creative.object_story_id ||\n    ads[0].id ||\n    'No Post ID Found';\n}\n\n\n// =======================\n// 7. TRẢ KẾT QUẢ CHO NODE SAU\n// =======================\n\n// Code node luôn phải return mảng item\nreturn [{\n  json: {\n    // Giữ lại toàn bộ dữ liệu cũ\n    ...item.json,\n\n    // Gắn thêm các field mới để dùng cho automation\n    calculated_cpa: cpa,        // CPA đã tính\n    post_id: postId,             // ID bài viết / ad\n    total_actions: totalActions, // Tổng comment + inbox\n    spend: spend                 // Chi phí quảng cáo\n  }\n}];\n"
+        "jsCode": "// =======================\n// 1. LẤY THÔNG SỐ ĐẦU VÀO\n// =======================\n\n// Lấy tỷ giá từ node \"Thông Số Đầu Vào\"\n// .first() vì node này chỉ có 1 item cấu hình\n// Ty_Gia dùng để quy đổi USD → VNĐ\nconst tyGia = $('Thông Số Đầu Vào3').first().json.Ty_Gia;\n\n// Lấy ngưỡng CPA cho phép từ node \"Quy Đổi Theo Tỷ Suất\"\n// (chưa dùng trong đoạn này, để phục vụ logic bật/tắt ads phía sau)\nconst nguongCPA = $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_CPA;\n\n\n// ==================================\n// 2. LẤY ITEM HIỆN TẠI ĐANG ĐƯỢC LOOP\n// ==================================\n\n// Trong Code node, n8n tự loop từng item\n// items[0] chính là item hiện tại\nconst item = items[0];\n\n// Kiểm tra an toàn: nếu không có item hoặc json → bỏ qua\nif (!item || !item.json) {\n  return [];\n}\n\n\n// =======================\n// 3. LẤY DỮ LIỆU INSIGHTS\n// =======================\n\n// Facebook Ads insights thường có dạng:\n// insights: { data: [ { ... } ] }\n// ?. dùng để tránh lỗi nếu thiếu key\n// [0] lấy bản ghi đầu tiên\nconst insights = item.json.insights?.data?.[0] || null;\n\n// Nếu ad chưa có dữ liệu insights → bỏ qua\nif (!insights) {\n  return [];\n}\n\n\n// =========================================\n// 4. TÍNH TỔNG HÀNH ĐỘNG (COMMENT + INBOX)\n// =========================================\n\n// insights.actions chứa tất cả hành động của ads\n// Nếu không có → dùng mảng rỗng\nconst actions = insights.actions || [];\n\n// Biến cộng dồn tổng hành động\nlet totalActions = 0;\n\n// Duyệt từng action trong insights\nfor (const action of actions) {\n\n  // Chỉ lấy 2 loại hành động quan trọng:\n  // - comment\n  // - inbox (messaging)\n  if (\n    action.action_type === 'comment' ||\n    action.action_type === 'onsite_conversion.total_messaging_connection'\n  ) {\n    // action.value là string → parseInt sang số\n    // Nếu null → cộng 0\n    totalActions += parseInt(action.value || 0);\n  }\n}\n\n\n// =================\n// 5. TÍNH CPA\n// =================\n\n// Lấy chi phí quảng cáo (USD)\n// parseFloat để đảm bảo là số\nconst spend = parseFloat(insights.spend || 0);\n\n// Tính CPA:\n// - Nếu có hành động → CPA = (chi phí VNĐ / số hành động)\n// - Nếu có spend nhưng không có hành động → gán CPA rất lớn để auto tắt ads\n// - Nếu không spend → CPA = 0\nconst cpa =\n  totalActions > 0\n    ? (spend * tyGia) / totalActions\n    : (spend > 0 ? 999999 : 0);\n\n\n// =======================\n// 6. LẤY POST ID / AD ID\n// =======================\n\n// Lấy danh sách ads từ item\nconst ads = item.json.ads?.data || [];\n\n// Giá trị mặc định nếu không tìm thấy post id\nlet postId = 'No Post ID Found';\n\n// Nếu có ads\nif (ads.length > 0) {\n\n  // Lấy creative của ad đầu tiên\n  const creative = ads[0].creative || {};\n\n  // Ưu tiên lấy post id theo thứ tự:\n  // 1. effective_object_story_id (chuẩn nhất)\n  // 2. object_story_id\n  // 3. fallback = ad id\n  postId =\n    creative.effective_object_story_id ||\n    creative.object_story_id ||\n    ads[0].id ||\n    'No Post ID Found';\n}\n\n\n// =======================\n// 7. TRẢ KẾT QUẢ CHO NODE SAU\n// =======================\n\n// Code node luôn phải return mảng item\nreturn [{\n  json: {\n    // Giữ lại toàn bộ dữ liệu cũ\n    ...item.json,\n\n    // Gắn thêm các field mới để dùng cho automation\n    calculated_cpa: cpa,        // CPA đã tính\n    post_id: postId,             // ID bài viết / ad\n    total_actions: totalActions, // Tổng comment + inbox\n    spend: spend                 // Chi phí quảng cáo\n  }\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3248,
-        320
+        2272,
+        4224
       ],
-      "id": "a2ee5713-b760-44b5-9ef1-4621f75d3f83",
-      "name": "Tính CPA1"
+      "id": "0c8b6ad7-a1c0-46c2-a1b9-d3d618bfb638",
+      "name": "Tính CPA3"
     },
     {
       "parameters": {
@@ -450,7 +450,7 @@
             {
               "id": "check-cpa",
               "leftValue": "={{ $json.calculated_cpa }}",
-              "rightValue": "={{ $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_CPA }}",
+              "rightValue": "={{ $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_CPA }}",
               "operator": {
                 "type": "number",
                 "operation": "gt"
@@ -464,11 +464,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3472,
-        320
+        2528,
+        4224
       ],
-      "id": "262347d1-0282-40fb-bbb5-449151545930",
-      "name": "Kiểm tra CPA > Ngưỡng1"
+      "id": "2392ab50-86aa-464a-bc15-0c97671b72e8",
+      "name": "Kiểm tra CPA > Ngưỡng3"
     },
     {
       "parameters": {
@@ -513,7 +513,7 @@
             {
               "id": "reason",
               "name": "reason",
-              "value": "={{ 'AdSet không đạt ngưỡng CPA (CPA = ' + $json.calculated_cpa + ' > ' + $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_CPA + ')' }}",
+              "value": "={{ 'AdSet không đạt ngưỡng CPA (CPA = ' + $json.calculated_cpa + ' > ' + $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_CPA + ')' }}",
               "type": "string"
             }
           ]
@@ -523,11 +523,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3696,
-        320
+        3136,
+        4208
       ],
-      "id": "a2dee32e-074a-44a3-b352-aedd4a1982be",
-      "name": "Chuẩn bị dữ liệu1"
+      "id": "f3052d71-727b-4c0c-a465-4012990b5647",
+      "name": "Chuẩn bị dữ liệu3"
     },
     {
       "parameters": {
@@ -542,19 +542,19 @@
             },
             {
               "name": "access_token",
-              "value": "={{ $('Thông Số Đầu Vào1').first().json.access_token }}"
+              "value": "={{ $('Thông Số Đầu Vào3').first().json.access_token }}"
             }
           ]
         },
         "options": {}
       },
-      "id": "7f91c081-dcf4-4a1e-850a-1d409f8f9a97",
-      "name": "Tắt nhom1",
+      "id": "5764ed20-f68d-4d71-a377-102998810798",
+      "name": "Tắt nhom3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3920,
-        320
+        3408,
+        4208
       ]
     },
     {
@@ -564,11 +564,11 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2448,
-        512
+        688,
+        4448
       ],
-      "id": "f14e83ef-432b-4b05-b10e-b72e2a1acf8f",
-      "name": "Loop Over Items1"
+      "id": "77146ff9-d56d-4d0b-b2f3-7455069cc85d",
+      "name": "Loop Over Items3"
     },
     {
       "parameters": {
@@ -577,37 +577,37 @@
             {
               "id": "adset-id",
               "name": "adset_id",
-              "value": "={{ $('Loop Over Items1').item.json.id }}",
+              "value": "={{ $('Loop Over Items3').item.json.id }}",
               "type": "string"
             },
             {
               "id": "adset-name",
               "name": "adset_name",
-              "value": "={{ $('Loop Over Items1').item.json.name }}",
+              "value": "={{ $('Loop Over Items3').item.json.name }}",
               "type": "string"
             },
             {
               "id": "campaign-id",
               "name": "campaign_id",
-              "value": "={{ $('Loop Over Items1').item.json.campaign.id }}",
+              "value": "={{ $('Loop Over Items3').item.json.campaign.id }}",
               "type": "string"
             },
             {
               "id": "campaign-name",
               "name": "campaign_name",
-              "value": "={{ $('Loop Over Items1').item.json.campaign.name }}",
+              "value": "={{ $('Loop Over Items3').item.json.campaign.name }}",
               "type": "string"
             },
             {
               "id": "reason",
               "name": "reason",
-              "value": "={{\n  Number($('Chuẩn bị dữ liệu1').item.json.cpa) === 999999\n    ? 'Không xuất hiện kết quả'\n    : 'AdSet không đạt ngưỡng CPA (CPA = '\n        + $('Chuẩn bị dữ liệu1').item.json.cpa\n        + ' > '\n        + $('Quy Đổi Theo Tỷ Suất1').first().json.Nguong_CPA\n        + ')'\n}}\n",
+              "value": "={{\n  Number($('Chuẩn bị dữ liệu3').item.json.cpa) === 999999\n    ? 'Không xuất hiện kết quả'\n    : 'AdSet không đạt ngưỡng CPA (CPA = '\n        + $('Chuẩn bị dữ liệu3').item.json.cpa\n        + ' > '\n        + $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_CPA\n        + ')'\n}}\n",
               "type": "string"
             },
             {
               "id": "1233ada8-cb9c-437d-ab39-78ef21ee049b",
               "name": "spend",
-              "value": "={{ $('Loop Over Items1').item.json.insights.data[0].spend }}",
+              "value": "={{ $('Loop Over Items3').item.json.insights.data[0].spend }}",
               "type": "number"
             }
           ]
@@ -617,11 +617,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        4144,
-        384
+        3680,
+        4544
       ],
-      "id": "2cb4e71d-14e7-4ba7-a3e8-95e9df4ad330",
-      "name": "Trả Về Kết Quả"
+      "id": "8c910f46-0765-4a42-9c68-6881fb4c3e0c",
+      "name": "Trả Về Kết Quả1"
     },
     {
       "parameters": {
@@ -651,257 +651,332 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2896,
-        -64
+        1552,
+        3872
       ],
-      "id": "7f9c5a39-a0d2-40b3-a588-5f186dc5249e",
-      "name": "If"
+      "id": "9b32cff7-23bd-4f5f-b591-ab389d5fff4c",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2768,
+        4448
+      ],
+      "id": "207b7e76-44ad-472f-a9ee-c1e86670c8e5",
+      "name": "Code in JavaScript",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "return [];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        4416
+      ],
+      "id": "24d48f40-bb35-4c2e-baed-c3bd8901b43f",
+      "name": "Code in JavaScript1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "return [];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1408,
+        4320
+      ],
+      "id": "677142aa-6a84-4392-a8b6-aaab84f2eda2",
+      "name": "Code in JavaScript2",
+      "alwaysOutputData": true
     }
   ],
   "pinData": {},
   "connections": {
-    "Aggregate": {
+    "Aggregate1": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "If1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "AI Agent": {
+    "AI Agent1": {
       "main": [
         [
           {
-            "node": "HTTP Request1",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenAI Chat Model": {
+    "OpenAI Chat Model1": {
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
+            "node": "AI Agent1",
             "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Lọc nhóm trong ngưỡng theo chi tiêu": {
+    "Lọc nhóm trong ngưỡng theo chi tiêu3": {
       "main": [
         [
           {
-            "node": "Lọc Adsets ACTIVE1",
+            "node": "Lọc Adsets ACTIVE3",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Code in JavaScript2",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Schedule Trigger1": {
+    "Schedule Trigger3": {
       "main": [
         [
           {
-            "node": "Thông Số Đầu Vào1",
+            "node": "Thông Số Đầu Vào3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Thông Số Đầu Vào1": {
+    "Thông Số Đầu Vào3": {
       "main": [
         [
           {
-            "node": "Quy Đổi Theo Tỷ Suất1",
+            "node": "Quy Đổi Theo Tỷ Suất3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Quy Đổi Theo Tỷ Suất1": {
+    "Quy Đổi Theo Tỷ Suất3": {
       "main": [
         [
           {
-            "node": "Lấy dữ liệu Campaigns1",
+            "node": "Lấy dữ liệu Campaigns3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Lấy dữ liệu Campaigns1": {
+    "Lấy dữ liệu Campaigns3": {
       "main": [
         [
           {
-            "node": "Split Out Campaigns1",
+            "node": "Split Out Campaigns3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Split Out Campaigns1": {
+    "Split Out Campaigns3": {
       "main": [
         [
           {
-            "node": "Lọc Campaigns Active1",
+            "node": "Lọc Campaigns Active3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Lọc Campaigns Active1": {
+    "Lọc Campaigns Active3": {
       "main": [
         [
           {
-            "node": "Lấy dữ liệu Nhóm1",
+            "node": "Lấy dữ liệu Nhóm3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Lấy dữ liệu Nhóm1": {
+    "Lấy dữ liệu Nhóm3": {
       "main": [
         [
           {
-            "node": "Split Out Adsets1",
+            "node": "Split Out Adsets3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Split Out Adsets1": {
+    "Split Out Adsets3": {
       "main": [
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Loop Over Items3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Lọc Adsets ACTIVE1": {
+    "Lọc Adsets ACTIVE3": {
       "main": [
         [
           {
-            "node": "Tính CPA1",
+            "node": "Tính CPA3",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Code in JavaScript1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Tính CPA1": {
+    "Tính CPA3": {
       "main": [
         [
           {
-            "node": "Kiểm tra CPA > Ngưỡng1",
+            "node": "Kiểm tra CPA > Ngưỡng3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Kiểm tra CPA > Ngưỡng1": {
+    "Kiểm tra CPA > Ngưỡng3": {
       "main": [
         [
           {
-            "node": "Chuẩn bị dữ liệu1",
+            "node": "Chuẩn bị dữ liệu3",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Code in JavaScript",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Chuẩn bị dữ liệu1": {
+    "Chuẩn bị dữ liệu3": {
       "main": [
         [
           {
-            "node": "Tắt nhom1",
+            "node": "Tắt nhom3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Tắt nhom1": {
+    "Tắt nhom3": {
       "main": [
         [
           {
-            "node": "Trả Về Kết Quả",
+            "node": "Trả Về Kết Quả1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items1": {
+    "Loop Over Items3": {
       "main": [
         [
           {
-            "node": "Aggregate",
+            "node": "Aggregate1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Lọc nhóm trong ngưỡng theo chi tiêu",
+            "node": "Lọc nhóm trong ngưỡng theo chi tiêu3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Trả Về Kết Quả": {
+    "Trả Về Kết Quả1": {
       "main": [
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Loop Over Items3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If": {
+    "If1": {
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
             "type": "main",
             "index": 0
           }
@@ -911,13 +986,13 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1",
-    "availableInMCP": false
+    "executionOrder": "v1"
   },
-  "versionId": "03c94fc3-e189-49a0-bd68-b200970df4e2",
+  "versionId": "5b06c981-ec22-4749-a72a-a16893df9247",
   "meta": {
-    "instanceId": "9afe67c5c4700f465bf756215b5e5e959b7e37136df48464de5e08eb43e7b2cb"
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8ae9064574590f4bef62fe6c8cafaae52a5a90dd40cb184103af1049753a2d5d"
   },
-  "id": "l1R3YCWezB0gDaDo",
+  "id": "ev9RrQhRO4aVxjIe",
   "tags": []
 }
