@@ -1,5 +1,5 @@
 {
-  "name": "04.Meta_Adsset_Off_noGGS_today_IfCPA_NotPass_Zalo",
+  "name": "04.Meta_Adsset_Off_noGGS_today_IfCPA_NotPass_Zalo_FN",
   "nodes": [
     {
       "parameters": {
@@ -35,7 +35,7 @@
         "promptType": "define",
         "text": "={{ $('Aggregate1').item.json.data }}",
         "options": {
-          "systemMessage": "=Quy tắc bắt buộc: trả về không được lớn hơn 1500 ký tự (ngắn gọn thôi)\nBạn là một trợ lý AI thông minh. Việc của bạn là phân tích Phân tích chi tiết hiệu suất Facebook Ads từ dữ liệu sau:\n{{ $('Aggregate1').item.json.data }}\nBạn hãy tạo báo cáo về việc nhóm nào bị tắt (ngắn gọn thôi)\nThêm vào lý do tại sao tắt của từng nhóm\nBạn chỉ đưa thông tin về chi tiêu từng nhóm và tính trạng đang hoạt động (ACTIVE) hay đang tắt (PAUSED) \nđơn vị tiền tệ là VNĐ\nQuy tắc bắt buộc: trả về không được quá 1500 ký tự (ngắn gọn thôi)"
+          "systemMessage": "=Bạn là trợ lý AI. Hãy phân tích dữ liệu Facebook Ads sau và tạo báo cáo NGẮN GỌN về **các nhóm quảng cáo đang bị tắt** cho **tài khoản TK07_ Python Lập Trình:\n\nDữ liệu:\n\n{{ $('Aggregate1').item.json.data }}\n\nYêu cầu đầu ra (bắt buộc):\n\n* Tổng độ dài phản hồi **≤ 1500 ký tự**.\n* **Chỉ** liệt kê các nhóm có trạng thái **PAUSED** (bị tắt).\n* Với **mỗi nhóm PAUSED**, chỉ cung cấp:\n\n  1. **Tên nhóm**\n  2. **Chi tiêu** (đơn vị **VNĐ**)\n  3. **Trạng thái**: PAUSED\n  4. **Lý do tắt** (suy luận ngắn gọn dựa trên dữ liệu: ví dụ chi tiêu thấp/0, không có chuyển đổi, CPC/CPA cao, hiệu quả kém, hết ngân sách, hoặc bị tắt thủ công — chọn lý do phù hợp nhất từ các chỉ số có sẵn).\n* **Không** đưa nhóm ACTIVE và **không** thêm thông tin nào khác ngoài các mục trên."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -185,7 +185,7 @@
             {
               "id": "fa677240-82bc-4d7f-8920-075213b9bdf2",
               "name": "Cam_Chi_Tieu_Nguong_Duoi",
-              "value": 19000,
+              "value": 9000,
               "type": "number"
             },
             {
@@ -988,7 +988,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "5b06c981-ec22-4749-a72a-a16893df9247",
+  "versionId": "34baec78-2e60-4db2-845b-112d942442e5",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "8ae9064574590f4bef62fe6c8cafaae52a5a90dd40cb184103af1049753a2d5d"
