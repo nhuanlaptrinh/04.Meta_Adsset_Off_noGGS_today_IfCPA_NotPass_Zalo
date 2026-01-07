@@ -1,5 +1,5 @@
 {
-  "name": "04.Meta_Adsset_Off_noGGS_today_IfCPA_NotPass_Zalo_FN",
+  "name": "04.Meta_Adsset_Off_noGGS_today_IfCPA_NotPass_Zalo.json",
   "nodes": [
     {
       "parameters": {
@@ -10,10 +10,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1232,
-        3840
+        0,
+        0
       ],
-      "id": "6f07fcfc-4992-42db-a576-2e4a0f487733",
+      "id": "3919df04-f32c-4b53-ae60-ac247fba7403",
       "name": "Sticky Note3"
     },
     {
@@ -24,10 +24,10 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1344,
-        3872
+        2576,
+        32
       ],
-      "id": "42e086b0-2f92-4b96-89e7-0e0e7ee740eb",
+      "id": "54679bd6-3ebb-4fa8-8aa5-3cce7ff68126",
       "name": "Aggregate1"
     },
     {
@@ -41,10 +41,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        2448,
-        3856
+        3680,
+        16
       ],
-      "id": "6c90089a-4d45-4f02-ac26-549fdcea246f",
+      "id": "12c30bbe-39ce-4cbe-9cc8-000165516285",
       "name": "AI Agent1"
     },
     {
@@ -59,10 +59,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2256,
-        4048
+        3488,
+        208
       ],
-      "id": "69aef74a-030b-42e8-a066-14ba7be84d89",
+      "id": "3743c382-7dd4-4a3e-a324-1e54a241c7d3",
       "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
@@ -80,7 +80,7 @@
           "parameters": [
             {
               "name": "chat_id",
-              "value": "=e95666e6e0b609e850a7"
+              "value": "={{ $('Thông Số Đầu Vào3').item.json.Zalo_Chat_ID }}"
             },
             {
               "name": "text",
@@ -93,10 +93,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        3488,
-        3856
+        4720,
+        16
       ],
-      "id": "b9718d8f-18e5-47d2-87f5-8f9ec44f7a4c",
+      "id": "046e1a3d-9575-427c-bb77-2f7b1285e06e",
       "name": "HTTP Request"
     },
     {
@@ -135,10 +135,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        912,
-        4256
+        2144,
+        416
       ],
-      "id": "bf02b402-eb8b-4a70-ad49-ceede7cfa960",
+      "id": "f4e4e61b-c9e7-48bc-98d8-92cdda17fd1d",
       "name": "Lọc nhóm trong ngưỡng theo chi tiêu3"
     },
     {
@@ -154,10 +154,10 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        -1104,
-        4448
+        128,
+        608
       ],
-      "id": "8cd1e644-aaf5-4e27-a153-80435d77a5c7",
+      "id": "b57f3266-17d6-43e1-8dc5-f494c8539344",
       "name": "Schedule Trigger3"
     },
     {
@@ -173,7 +173,7 @@
             {
               "id": "1dda0de4-888e-4d16-9892-0491110769e8",
               "name": "Nguong_CPA",
-              "value": 13000,
+              "value": 12000,
               "type": "number"
             },
             {
@@ -211,6 +211,12 @@
               "name": "Ty_Gia",
               "value": 1,
               "type": "number"
+            },
+            {
+              "id": "e63f21d4-28f8-4ac0-ac30-25fc98990511",
+              "name": "Zalo_Chat_ID",
+              "value": "e95666e6e0b609e850a7",
+              "type": "string"
             }
           ]
         },
@@ -219,10 +225,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -880,
-        4448
+        352,
+        608
       ],
-      "id": "a0ccb6a3-e4f9-4668-9ad3-cb63c8aa2f46",
+      "id": "2f330cf2-9595-45c0-b1f2-93ad194a6846",
       "name": "Thông Số Đầu Vào3"
     },
     {
@@ -254,10 +260,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -656,
-        4448
+        576,
+        608
       ],
-      "id": "5be65295-ad74-44d7-8160-06f69d72484a",
+      "id": "21c9aac7-64c3-41ce-a160-92dc89248ade",
       "name": "Quy Đổi Theo Tỷ Suất3"
     },
     {
@@ -282,13 +288,13 @@
         },
         "options": {}
       },
-      "id": "1214d12c-4c8a-42c0-8437-76fd33b0185b",
+      "id": "49e7825c-5e7e-4ec4-beb9-7199128ffafd",
       "name": "Lấy dữ liệu Campaigns3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -432,
-        4448
+        800,
+        608
       ],
       "notesInFlow": true,
       "notes": "Lấy tất cả campaigns"
@@ -301,10 +307,10 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -208,
-        4448
+        1024,
+        608
       ],
-      "id": "8be06e95-29e5-4c89-9d21-f8f6be0837fe",
+      "id": "d8334f48-c50a-4f38-ad65-c8feeac2d201",
       "name": "Split Out Campaigns3"
     },
     {
@@ -334,10 +340,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        16,
-        4448
+        1248,
+        608
       ],
-      "id": "69f90320-db1f-4bf3-9ad0-9bb08eb9386d",
+      "id": "1cb906b3-dbeb-4bd9-8a48-3012c700c73a",
       "name": "Lọc Campaigns Active3"
     },
     {
@@ -355,10 +361,6 @@
               "value": "1000"
             },
             {
-              "name": "filtering",
-              "value": "=[{\"field\":\"spend\",\"operator\":\"GREATER_THAN_OR_EQUAL\",\"value\":{{ $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_Duoi }}},{\"field\":\"spend\",\"operator\":\"LESS_THAN_OR_EQUAL\",\"value\":{{ $('Quy Đổi Theo Tỷ Suất3').first().json.Nguong_Tren }}}]"
-            },
-            {
               "name": "access_token",
               "value": "={{ $('Thông Số Đầu Vào3').first().json.access_token }}"
             }
@@ -366,13 +368,13 @@
         },
         "options": {}
       },
-      "id": "ea876efb-449a-4463-ab77-23af03be74f5",
+      "id": "2121ea63-a80e-47e3-a271-da9221b9f879",
       "name": "Lấy dữ liệu Nhóm3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        240,
-        4448
+        1472,
+        608
       ],
       "notesInFlow": true,
       "notes": "Lấy adsets từ campaigns active"
@@ -385,10 +387,10 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        464,
-        4448
+        1696,
+        608
       ],
-      "id": "1e95b85f-06f0-468c-ab1f-bf37358a7c64",
+      "id": "9b288085-0405-4b1d-a932-27d810635ac5",
       "name": "Split Out Adsets3"
     },
     {
@@ -418,10 +420,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1600,
-        4240
+        2832,
+        400
       ],
-      "id": "a78adab2-c3dd-471d-860c-41bec75a6fce",
+      "id": "6d56b086-17a0-4a35-b8d0-352ae5afec78",
       "name": "Lọc Adsets ACTIVE3"
     },
     {
@@ -431,10 +433,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2272,
-        4224
+        3504,
+        384
       ],
-      "id": "0c8b6ad7-a1c0-46c2-a1b9-d3d618bfb638",
+      "id": "813893ba-b3b9-4bc1-ace3-e22ad7cbd752",
       "name": "Tính CPA3"
     },
     {
@@ -464,10 +466,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2528,
-        4224
+        3760,
+        384
       ],
-      "id": "2392ab50-86aa-464a-bc15-0c97671b72e8",
+      "id": "cce3e052-ba99-4e8c-8743-f23f5009a474",
       "name": "Kiểm tra CPA > Ngưỡng3"
     },
     {
@@ -523,10 +525,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3136,
-        4208
+        4368,
+        368
       ],
-      "id": "f3052d71-727b-4c0c-a465-4012990b5647",
+      "id": "c1f9f91b-94b9-4658-b828-ee658677f294",
       "name": "Chuẩn bị dữ liệu3"
     },
     {
@@ -548,13 +550,13 @@
         },
         "options": {}
       },
-      "id": "5764ed20-f68d-4d71-a377-102998810798",
+      "id": "0986ca2a-f168-4dda-b024-8d62d8603b8a",
       "name": "Tắt nhom3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3408,
-        4208
+        4640,
+        368
       ]
     },
     {
@@ -564,10 +566,10 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        688,
-        4448
+        1920,
+        608
       ],
-      "id": "77146ff9-d56d-4d0b-b2f3-7455069cc85d",
+      "id": "a06cd4c8-f562-496d-aab9-c76757ddb140",
       "name": "Loop Over Items3"
     },
     {
@@ -617,10 +619,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3680,
-        4544
+        4912,
+        704
       ],
-      "id": "8c910f46-0765-4a42-9c68-6881fb4c3e0c",
+      "id": "a9f5729e-0329-4ad0-9f73-1a554f012a56",
       "name": "Trả Về Kết Quả1"
     },
     {
@@ -651,10 +653,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        1552,
-        3872
+        2784,
+        32
       ],
-      "id": "9b32cff7-23bd-4f5f-b591-ab389d5fff4c",
+      "id": "528939bd-b6dd-4168-8fee-8b7aba030595",
       "name": "If1"
     },
     {
@@ -664,10 +666,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2768,
-        4448
+        4000,
+        608
       ],
-      "id": "207b7e76-44ad-472f-a9ee-c1e86670c8e5",
+      "id": "bd28f36c-c5c9-42be-908c-3542bf4934b2",
       "name": "Code in JavaScript",
       "alwaysOutputData": true
     },
@@ -678,10 +680,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1840,
-        4416
+        3072,
+        576
       ],
-      "id": "24d48f40-bb35-4c2e-baed-c3bd8901b43f",
+      "id": "49fb3abe-7ad8-4e8b-a1fe-2c2956354ace",
       "name": "Code in JavaScript1",
       "alwaysOutputData": true
     },
@@ -692,10 +694,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1408,
-        4320
+        2640,
+        480
       ],
-      "id": "677142aa-6a84-4392-a8b6-aaab84f2eda2",
+      "id": "8093272d-cf98-4704-97e4-a7a88d372538",
       "name": "Code in JavaScript2",
       "alwaysOutputData": true
     }
@@ -988,11 +990,10 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "34baec78-2e60-4db2-845b-112d942442e5",
+  "versionId": "9fa1b1e1-4f29-475a-9942-146618e888e1",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "8ae9064574590f4bef62fe6c8cafaae52a5a90dd40cb184103af1049753a2d5d"
   },
-  "id": "ev9RrQhRO4aVxjIe",
+  "id": "q5wEYHtOXsUmvBEt",
   "tags": []
 }
